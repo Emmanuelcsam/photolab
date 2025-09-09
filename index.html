@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William & Mary Photo Editor - Professional Image Processing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header with W&M Branding -->
+    <header class="wm-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="wm-cypher">W&M</div>
+                <div class="app-title">
+                    <h1>Photo Editor</h1>
+                    <span class="tagline">Professional Image Processing Suite</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary" id="openDirectoryBtn">
+                    <i class="fas fa-folder-open"></i> Open Directory
+                </button>
+                <button class="btn-secondary" id="exportAllBtn">
+                    <i class="fas fa-download"></i> Export All
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Container -->
+    <div class="app-container">
+        <!-- Left Panel - Image Gallery -->
+        <aside class="left-panel">
+            <div class="panel-header">
+                <h2><i class="fas fa-images"></i> Image Gallery</h2>
+                <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                <button class="btn-sm btn-primary" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-plus"></i> Add Images
+                </button>
+            </div>
+            <div class="image-gallery" id="imageGallery">
+                <!-- Thumbnails will be added here dynamically -->
+                <div class="gallery-placeholder">
+                    <i class="fas fa-image"></i>
+                    <p>No images loaded</p>
+                    <small>Click "Add Images" to get started</small>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Panel - Canvas and Controls -->
+        <main class="center-panel">
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <div class="preview-header">
+                    <h2><i class="fas fa-eye"></i> Preview</h2>
+                    <div class="preview-controls">
+                        <button class="btn-ai" id="automaticModeBtn">
+                            <i class="fas fa-magic"></i> Automatic Mode
+                        </button>
+                        <div class="zoom-controls">
+                            <button id="zoomOutBtn"><i class="fas fa-search-minus"></i></button>
+                            <span id="zoomLevel">100%</span>
+                            <button id="zoomInBtn"><i class="fas fa-search-plus"></i></button>
+                            <button id="fitBtn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="imageCanvas"></canvas>
+                    <div class="canvas-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Select an image to begin editing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="control-section">
+                <button class="btn-secondary" id="undoBtn">
+                    <i class="fas fa-undo"></i> Undo
+                </button>
+                <button class="btn-secondary" id="resetBtn">
+                    <i class="fas fa-sync"></i> Reset
+                </button>
+                <button class="btn-primary" id="exportBtn">
+                    <i class="fas fa-save"></i> Export Image
+                </button>
+                <button class="btn-outline" id="saveEditsBtn">
+                    <i class="fas fa-file-export"></i> Save Preset
+                </button>
+                <button class="btn-outline" id="loadEditsBtn">
+                    <i class="fas fa-file-import"></i> Load Preset
+                </button>
+            </div>
+        </main>
+
+        <!-- Right Panel - Functions -->
+        <aside class="right-panel">
+            <div class="panel-header">
+                <h2><i class="fas fa-sliders-h"></i> Functions</h2>
+            </div>
+            <div class="function-tabs">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="basic">Basic</button>
+                    <button class="tab-btn" data-tab="filters">Filters</button>
+                    <button class="tab-btn" data-tab="threshold">Threshold</button>
+                    <button class="tab-btn" data-tab="morphology">Morphology</button>
+                    <button class="tab-btn" data-tab="edge">Edge</button>
+                    <button class="tab-btn" data-tab="enhance">Enhance</button>
+                    <button class="tab-btn" data-tab="color">Color</button>
+                    <button class="tab-btn" data-tab="artistic">Artistic</button>
+                </div>
+                <div class="tab-content">
+                    <!-- Basic Adjustments Tab -->
+                    <div class="tab-pane active" id="basic-tab">
+                        <!-- Functions will be dynamically added here -->
+                    </div>
+                    
+                    <!-- Filters Tab -->
+                    <div class="tab-pane" id="filters-tab">
+                        <!-- Functions will be dynamically added here -->
+                    </div>
+                    
+                    <!-- Threshold Tab -->
+                    <div class="tab-pane" id="threshold-tab">
+                        <!-- Functions will be dynamically added here -->
+                    </div>
+                    
+                    <!-- Morphology Tab -->
+                    <div class="tab-pane" id="morphology-tab">
+                        <!-- Functions will be dynamically added here -->
+                    </div>
+                    
+                    <!-- Edge Detection Tab -->
+                    <div class="tab-pane" id="edge-tab">
+                        <!-- Functions will be dynamically added here -->
+                    </div>
+                    
+                    <!-- Enhancement Tab -->
+                    <div class="tab-pane" id="enhance-tab">
+                        <!-- Functions will be dynamically added here -->
+                    </div>
+                    
+                    <!-- Color Tab -->
+                    <div class="tab-pane" id="color-tab">
+                        <!-- Functions will be dynamically added here -->
+                    </div>
+                    
+                    <!-- Artistic Tab -->
+                    <div class="tab-pane" id="artistic-tab">
+                        <!-- Functions will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Status Bar -->
+    <footer class="status-bar">
+        <div class="status-content">
+            <span id="statusMessage">Ready</span>
+            <span class="separator">|</span>
+            <span id="imageInfo">No image loaded</span>
+            <span class="separator">|</span>
+            <span id="performanceInfo">FPS: 60</span>
+        </div>
+    </footer>
+
+    <!-- Modal for Export -->
+    <div class="modal" id="exportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Export Image</h3>
+                <button class="modal-close" onclick="closeModal('exportModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>File Name:</label>
+                    <input type="text" id="exportFileName" value="edited_image.jpg">
+                </div>
+                <div class="form-group">
+                    <label>Format:</label>
+                    <select id="exportFormat">
+                        <option value="jpeg">JPEG</option>
+                        <option value="png">PNG</option>
+                        <option value="webp">WebP</option>
+                        <option value="bmp">BMP</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quality:</label>
+                    <input type="range" id="exportQuality" min="1" max="100" value="95">
+                    <span id="qualityValue">95%</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="performExport()">Export</button>
+                <button class="btn-secondary" onclick="closeModal('exportModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load/Save Edits Modal -->
+    <div class="modal" id="editsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="editsModalTitle">Edit Presets</h3>
+                <button class="modal-close" onclick="closeModal('editsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="presetsList">
+                    <!-- Preset items will be added here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="editsModalAction">Load</button>
+                <button class="btn-secondary" onclick="closeModal('editsModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
