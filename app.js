@@ -465,6 +465,39 @@ class PhotoEditor {
         const paramsDiv = document.createElement('div');
         paramsDiv.className = 'function-params';
         
+        // Check if there are no parameters
+        if (Object.keys(params).length === 0) {
+            // Add an apply button for functions with no parameters
+            const applyBtn = document.createElement('button');
+            applyBtn.className = 'btn-primary';
+            applyBtn.style.width = '100%';
+            applyBtn.style.marginTop = '0.5rem';
+            applyBtn.textContent = 'Apply ' + this.formatFunctionName(funcName);
+            applyBtn.onclick = () => {
+                // For functions with no parameters, apply directly
+                if (!this.currentImage) {
+                    this.updateStatus('Please load an image first');
+                    return;
+                }
+                
+                // Apply the effect
+                const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+                const adjustment = {
+                    category: category,
+                    function: funcName,
+                    params: {}
+                };
+                this.applyEffect(imageData, adjustment);
+                this.ctx.putImageData(imageData, 0, 0);
+                
+                // Save to undo stack
+                this.undoStack.push({...this.currentAdjustments});
+                
+                this.updateStatus(`Applied ${this.formatFunctionName(funcName)}`);
+            };
+            paramsDiv.appendChild(applyBtn);
+        }
+        
         Object.keys(params).forEach(paramName => {
             const param = params[paramName];
             const paramGroup = document.createElement('div');
